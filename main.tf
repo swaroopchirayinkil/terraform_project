@@ -31,7 +31,15 @@ egress {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+resource "aws_s3_bucket" "b" {
+  bucket = "my-tf-test-bucket"
+  acl    = "private"
 
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}
 resource "aws_instance" "web-app" {
   ami = "ami-0a0ad6b70e61be944"
   instance_type = "t2.micro"
